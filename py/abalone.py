@@ -68,13 +68,13 @@ if submitted:
 
         # 상위 10개 결과 출력
         st.write("상위 10개 결과:")
-        for i in range(min(10, len(actual_values))):
+        for i in range((10, len(actual_values))):
             st.write(f"실제값: {actual_values[i]:.3f}, 예측값: {predictions[i]:.3f}")
 
         # 차트로 시각화
         st.subheader("실제값과 예측값 시각화")
         koreanize_matplotlib.koreanize()
-        st.bar_chart(comparison_df.head(10).set_index("실제값"))
+        st.bar_chart(comparison_df.head(n=10).set_index("실제값"))
 
     except Exception as e:
-        st.error(f"예측 중 오류 발생: {str(e)}")
+        st.error(f"예측 중 오류 발생: {str(object=e)}")
