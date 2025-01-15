@@ -63,41 +63,41 @@ keras.dataset 로드함. 각 이미지는 28\*28 흑백 이미지로 구성
 
     -> 하고자 하는것 :
     (원 데이터)
-       customerID       date itemDescription
+    customerID       date itemDescription
 
-0 1 2025-01-01 Milk
-1 2 2025-01-01 Bread
-2 3 2025-01-02 Butter
-3 4 2025-01-03 Milk
+    0 1 2025-01-01 Milk
+    1 2 2025-01-01 Bread
+    2 3 2025-01-02 Butter
+    3 4 2025-01-03 Milk
 
     (원핫 인코딩 상태)
 
-Bread Butter Milk
-0 0 0 1
-1 1 0 0
-2 0 1 0
-3 0 0 1
+    Bread Butter Milk
+    0 0 0 1
+    1 1 0 0
+    2 0 1 0
+    3 0 0 1
 
     (결합된 최종 데이터)
 
-customerID date Bread Butter Milk
-0 1 2025-01-01 0 0 1
-1 2 2025-01-01 1 0 0
-2 3 2025-01-02 0 1 0
-3 4 2025-01-03 0 0 1
+    customerID date Bread Butter Milk
+    0 1 2025-01-01 0 0 1
+    1 2 2025-01-01 1 0 0
+    2 3 2025-01-02 0 1 0
+    3 4 2025-01-03 0 0 1
 
 # FP-Growth 알고리즘을 사용한 반발항목 집합 계산
 
-예시 : transaction2 데이터
-상품A 상품B 상품C
-0.067767 0.157923 0.049054
-0.251354 0.364681 0.215989
-0.000000 0.000000 0.000000
+    예시 : transaction2 데이터
+    상품A 상품B 상품C
+    0.067767 0.157923 0.049054
+    0.251354 0.364681 0.215989
+    0.000000 0.000000 0.000000
 
 - FP-Growth 적용
 
-frequent_itemsets = fpgrowth(transaction2, min_support=0.01, max_len=3, use_colnames=True)
-frequent_itemsets.sort_values(by=['support'], ascending=True).head(10)
+  frequent_itemsets = fpgrowth(transaction2, min_support=0.01, max_len=3, use_colnames=True)
+  frequent_itemsets.sort_values(by=['support'], ascending=True).head(10)
 
 지지도란? 특정 집합이 거래에 얼마나 나오는지 비율
 // 설명 : min_support= 지지도 최소 , max_lens=3 = 아이템이 최소 3개 있어야함 , 컬럼네임 = 컬럼네임
@@ -174,3 +174,30 @@ predicted_class:
 input dims = 입력 뉴런
 
 파라미터 계산 = 가중치(입력 뉴런\*출력 뉴런(편향)) + 편향
+
+coef*
+intercept*
+regression\*
+
+## 선형, 절편 vs 회귀 , 절편
+
+- 선형 : 일차 방정식(직선){기하학 관계 설명}
+
+- 회귀 : 미지의 값을 학습-> 최적의 직선을 찾음 { 예측 모델}
+
+- 선형 절편 vs 회귀 절편
+
+선형 절편: 그냥 y 축
+
+회귀 절편: 모든 입력 특성이 0 일떄 모델 예측 값
+: 데이터의 영향을 받음 , 초기상태를 조정하는 역할임
+
+Sequential 데이터 처리 단계
+
+1. 데이터 준비
+2. 데이터 잔처리(결측치처리, 정규화/스케일링, 슬라이싱)
+3. 데이터 분할
+4. 모델설계
+5. 모델예측
+6. 데이터를 Sequential 데이터로 변환하고 처리
+7. 결과 시각화
